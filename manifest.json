@@ -1,0 +1,20 @@
+{
+    "manifest_version": 2,
+    "name": "Image Alt Text Copier",
+    "version": "1.0",
+    "description": "Adds a context menu item to images to copy the alt text.",
+    
+    "icons": {
+        "48": "icons/icon-48.png"
+    },
+
+    "background": {
+        "scripts": ["background-script.js"]
+    },
+
+    "permissions": [
+        "activeTab",
+        "menus",
+        "clipboardWrite"
+    ]
+}
