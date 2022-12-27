@@ -15,6 +15,7 @@
     "permissions": [
         "activeTab",
         "menus",
-        "clipboardWrite"
+        "clipboardWrite",
+        "<all_urls>"
     ]
 }

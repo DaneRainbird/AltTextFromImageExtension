@@ -3,7 +3,19 @@
     // Ensure that the script is only run once per tab
     if (window.hasRunContentScriptOnce === true) return;
     window.hasRunContentScriptOnce = true;
-    
+
+    // Add a listener for right clicks on images
+    document.addEventListener("contextmenu", event => {
+        // Check that the target is an image with alt-text
+        if (event.target.tagName === "IMG" && event.target.alt.length > 0 && event.target.alt !== "") {
+            // Send a message to the background script to create a context menu item
+            browser.runtime.sendMessage({
+                action: "createContextMenu",
+                targetElementId: event.target.id
+            })
+        }
+    })
+
     // Add a listener for any incoming connections 
     browser.runtime.onConnect.addListener(port => {
         if (port.name !== "portFromBackground") return;
@@ -39,7 +51,6 @@
                     // Remove the textArea
                     document.body.removeChild(textArea)
                 }
-                
             }
         })
     });
